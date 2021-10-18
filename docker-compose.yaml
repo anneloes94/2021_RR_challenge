@@ -7,7 +7,7 @@ services:
       - db
     restart: 'always'
     ports:
-      - '8000:8000'
+      - '3000:3000'
     volumes:
       - "/home/anneloes/development/2021_RR_challenge/backend:/app"
   db:
@@ -22,4 +22,4 @@ services:
     volumes:
       - "./db/structure.sql:/docker-entrypoint-initdb.d/1.sql"
       # TODO mount db files back to host for persistence
-      # - "./db/data.sql:/docker-entrypoint-initdb.d/2.sql"
+      - "./db/data.sql:/docker-entrypoint-initdb.d/2.sql"
