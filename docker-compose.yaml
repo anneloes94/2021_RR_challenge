@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+    restart: 'always'
+    ports:
+      - '8000:8000'
+    volumes:
+      - "/home/anneloes/development/2021_RR_challenge/backend:/app"
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "pass"
+      MYSQL_DATABASE: "db" # Set this
+      MYSQL_USER: "user" # Set this
+      MYSQL_PASSWORD: "pass" # Set this
+    volumes:
+      - "./db/structure.sql:/docker-entrypoint-initdb.d/1.sql"
+      # TODO mount db files back to host for persistence
+      # - "./db/data.sql:/docker-entrypoint-initdb.d/2.sql"
