@@ -1,8 +1,12 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
+const bodyParser = require("body-parser");
 
 const connection = require('./sql-connector');
+app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.json());
+// app.use(express.static("public"));
 
 app.get('/', async (req, res) => {
   connection.query('SELECT * FROM orders;', function (error, results, fields) {
@@ -22,18 +26,46 @@ app.get('/orders', (req, res) => {
   });
 });
 
-app.put('/orders/:order_id/edit', (req, res) => {
+app.patch('/orders/:order_id', (req, res) => {
   const order_id = req.params.order_id;
+  const body = req.body;
   if(order_id && !Number(order_id)) {
     res.statusMessage = "Order id is not a number";
     res.status(400).end();
   }
-  let driver_id = req.body.params['driver_id']
-  // TODO add driver_id validation
-  connection.query(`UPDATE orders SET driver_id = ${driver_id} WHERE order_id = ${order_id};`, function (error, results, fields) {
-    res.send(results);
-  });
-  // TODO: enable modifying cost/revenue
+
+  if('driver_id' in body) {
+    connection.query("UPDATE orders SET driver_id = ? WHERE id = ?;", [
+      body.driver_id, order_id,
+    ], function (error, results, fields) {
+      res.send(results);
+    });
+  }
+
+  if('cost' in body) {
+    connection.query("UPDATE orders SET cost = ? WHERE id = ?;", [
+      body.cost, order_id,
+    ], function (error, results, fields) {
+      if (error) {
+        res.status(500).json({ error: error.message })
+      } else {
+        res.send(results);
+      }
+    });
+  }
+
+  if('revenue' in body) {
+    connection.query("UPDATE orders SET revenue = ? WHERE id = ?;", [
+      body.revenue, order_id,
+    ], function (error, results, fields) {
+      if (error) {
+        res.status(500).json({ error: error.message })
+      } else{
+        res.send(results);
+
+      }
+    });
+  }
 });
 
 app.listen(port, () => {
