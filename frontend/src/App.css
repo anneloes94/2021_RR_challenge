@@ -27,21 +27,22 @@
   color: #61dafb;
 }
 
-.unassignedOrders {
+.orders {
   list-style: none;
   padding-left: 0;
+  margin: 30px;
 }
 
-.unassignedOrders li {
+.orders li {
   display: flex;
   align-items: center;
   border: solid 2px #d0d0d0;
   border-radius: .2em;
-  padding: .5em .8em .5em .5em;
   margin-bottom: 1em;
+  padding: 20px;
 }
 
-.unassignedOrders p {
+.orders p {
   max-width: none;
   font-weight: bold;
   margin: 0;
@@ -62,4 +63,10 @@
 
 .a3 {
   width: 200px;
+}
+
+.draggable-items {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 }
