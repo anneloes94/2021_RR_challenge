@@ -15,7 +15,6 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,11 +27,39 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.unassignedOrders {
+  list-style: none;
+  padding-left: 0;
+}
+
+.unassignedOrders li {
+  display: flex;
+  align-items: center;
+  border: solid 2px #d0d0d0;
+  border-radius: .2em;
+  padding: .5em .8em .5em .5em;
+  margin-bottom: 1em;
+}
+
+.unassignedOrders p {
+  max-width: none;
+  font-weight: bold;
+  margin: 0;
+}
+
+#content {
+  display: flex;
+  justify-content: center;
+}
+
+.a1 {
+  width: 200px;
+}
+
+.a2 {
+  width: 200px;
+}
+
+.a3 {
+  width: 200px;
 }
