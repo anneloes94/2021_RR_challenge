@@ -2,16 +2,16 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const connection = require('./sql-connector');
 app.use(bodyParser.urlencoded({extended: true}));
-// app.use(bodyParser.json());
+app.use(bodyParser.json())
+app.use(cors());
 // app.use(express.static("public"));
 
 app.get('/', async (req, res) => {
-  connection.query('SELECT * FROM orders;', function (error, results, fields) {
-    res.send(results);
-  });
+  res.send("Hello! :)");
 });
 
 app.get('/drivers', (req, res) => {
@@ -29,10 +29,9 @@ app.get('/orders', (req, res) => {
 app.patch('/orders/:order_id', (req, res) => {
   const order_id = req.params.order_id;
   const body = req.body;
-  if(order_id && !Number(order_id)) {
-    res.statusMessage = "Order id is not a number";
-    res.status(400).end();
-  }
+  if(!body) res.status(500).json({ error: error.message })
+  
+  //TODO: throw error if its not a number or null
 
   if('driver_id' in body) {
     connection.query("UPDATE orders SET driver_id = ? WHERE id = ?;", [
