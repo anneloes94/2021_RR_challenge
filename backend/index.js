@@ -31,7 +31,10 @@ app.patch('/orders/:order_id', (req, res) => {
   const body = req.body;
   if(!body) res.status(500).json({ error: error.message })
   
-  //TODO: throw error if its not a number or null
+  if(order_id && !Number(order_id)) {
+    res.statusMessage = "Order id is not a number";
+    res.status(400).end();
+  }
 
   if('driver_id' in body) {
     connection.query("UPDATE orders SET driver_id = ? WHERE id = ?;", [
