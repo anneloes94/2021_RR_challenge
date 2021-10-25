@@ -1,0 +1,2 @@
+- Containerized with Docker
+- ERD of database:

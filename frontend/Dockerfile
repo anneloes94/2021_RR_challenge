@@ -6,15 +6,11 @@ RUN true && \
 true
 
 WORKDIR /app
-# COPY ./backend /app
-# RUN npm install 
+COPY package.json /app/package.json
+RUN npm install && npm install -g react-scripts
+COPY ./src /app/src
+COPY ./public /app/public
 
 EXPOSE 3000
 
-# CMD ["npm run dev"]
-
-RUN touch /potato
-CMD ["/bin/sh", "-c", "tail -F /potato"]
-
-
-# npm install -g react-scripts 
+CMD ["/bin/sh", "-c", "npm start"]
