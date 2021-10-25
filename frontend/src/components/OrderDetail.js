@@ -29,16 +29,16 @@ const OrderDetails = ({ description, revenue, cost, order_id, getOrders }) => {
 
   return (
     <div className="draggable-items">
-      <i className="fas fa-grip-lines"></i>
-      <p>{description}</p>
-      {isEdit ? (
-        <input id="inputRev" defaultValue={revenue} />
+      <i className="fas fa-grip-lines dr-item"></i>
+      <p className="dr-item">{description}</p>
+      ${isEdit ? (
+        <input className="dr-item revenue" id="inputRev" defaultValue={revenue} />
       ) : (
-        <p> ${revenue} </p>
+        <p className="dr-item revenue"> {revenue} </p>
       )}
-      {isEdit ? <input id="inputCost" defaultValue={cost} /> : <p> ${cost} </p>}
+      ${isEdit ? <input className="dr-item cost" id="inputCost" defaultValue={cost} /> : <p className="dr-item cost"> {cost} </p>}
       <i
-        className={isEdit ? "fas fa-save" : "fas fa-edit"}
+        className={isEdit ? "dr-item fas fa-save" : "dr-item fas fa-edit"}
         onClick={editSaveDetail}
       ></i>
     </div>

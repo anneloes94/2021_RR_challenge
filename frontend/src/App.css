@@ -12,34 +12,55 @@
   color: white;
 }
 
+#content {
+  display: flex;
+  justify-content: center;
+}
+
 .orders {
   list-style: none;
   padding-left: 0;
   margin: 30px;
 }
 
+.orders p {
+  max-width: none;
+  font-weight: bold;
+}
+
 .orders li {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   border: solid 2px #d0d0d0;
   border-radius: .2em;
   margin-bottom: 1em;
-  padding: 20px;
+  padding: 10px;
 }
 
-.orders p {
-  max-width: none;
-  font-weight: bold;
-  margin: 0;
-}
-
-#content {
-  display: flex;
-  justify-content: center;
-}
 
 .draggable-items {
   display: flex;
   flex-direction: row;
   align-items: baseline;
+}
+
+.revenue {
+  color: green;
+}
+
+.cost {
+  color: red;
+}
+
+.draggable-items > input, p, i{
+  margin: 10px 10px;
+}
+
+.draggable-items > input {
+  max-width: 75px;
+}
+
+.dr-item {
+  
 }
