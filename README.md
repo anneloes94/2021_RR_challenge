@@ -4,10 +4,10 @@
 
 To start this application, run:
 
-`docker-compose up -d`
-(this may take a few minutes...)
-
-* Note: backend container might crash a few times; it is expected to fail when the database container is not ready yet. Hence, it will crash a few times and the docker-compose will restart it.
+1. `docker-compose up -d`
+  * this may take a few minutes...
+  * backend container might crash a few times; it is expected to fail when the database container is not ready yet. Hence, it will crash a few times and the docker-compose will restart it.
+2. Visit [http://localhost:3001](http://localhost:3001) :)
 
 To access the database:
 
